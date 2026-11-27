@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Roblox Luau сурья</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f7fb;--card:#ffffff;--soft:#eef2f8;--ink:#0f172a;--muted:#5a6578;--line:#dbe2ec;--accent:#0a66d6;--accent2:#7c3aed;--on-accent:#ffffff;--okc:#15803d;--errc:#b45309;--shadow:0 6px 24px #0f172a14;
+--code-bg:#0f172a;--code-ink:#e6edf7;--c-com:#7c8aa5;--c-str:#86efac;--c-kw:#7dd3fc;--c-num:#fbbf24;--dot:#cfd8e6;
+--sans:"Noto Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0f1e;--card:#111a30;--soft:#17223d;--ink:#eef2fa;--muted:#a3adc2;--line:#27304a;--accent:#4da3ff;--accent2:#a78bfa;--on-accent:#0a0f1e;--okc:#4ade80;--errc:#fbbf24;--shadow:0 6px 24px #00000066;--code-bg:#050810;--dot:#1c2742;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0a0f1e;--card:#111a30;--soft:#17223d;--ink:#eef2fa;--muted:#a3adc2;--line:#27304a;--accent:#4da3ff;--accent2:#a78bfa;--on-accent:#0a0f1e;--okc:#4ade80;--errc:#fbbf24;--shadow:0 6px 24px #00000066;--code-bg:#050810;--dot:#1c2742;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 var(--sans)}
+.wrap{max-width:720px;margin:0 auto;padding:0 18px}
+.hero{padding:40px 0 20px;background-image:radial-gradient(var(--dot) 1.4px,transparent 1.4px);background-size:22px 22px}
+.logo{display:inline-block;font:700 14px var(--mono);color:var(--accent);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:4px 12px;margin:0 0 16px}
+h1{font-size:clamp(32px,8.5vw,50px);line-height:1.08;font-weight:800;margin:0 0 12px;letter-spacing:-.015em}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted);max-width:46ch;margin:0 0 20px}
+.brand{display:flex;align-items:center;gap:12px;margin:0 0 20px}
+.brand svg{width:48px;height:48px;border-radius:12px;box-shadow:var(--shadow);flex:none}
+.brand b{display:block;font:800 21px/1.1 var(--sans)}
+.brand small{display:block;font:600 12px var(--mono);color:var(--muted)}
+.btn{display:inline-block;background:var(--accent);color:var(--on-accent);font:700 16px var(--sans);padding:12px 20px;border:2px solid var(--accent);border-radius:10px;text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn:focus-visible,.copy:focus-visible,.ed:focus-visible,.dl a:focus-visible,.x:focus-visible,.fab:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.bar{height:8px;background:var(--soft);border-radius:99px;overflow:hidden;margin:18px 0 6px;border:1px solid var(--line)}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .5s}
+.prog{color:var(--muted);font-size:14px;margin:0}
+.win{margin-top:22px;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.win .tb{background:#1b2540;padding:9px 12px;display:flex;gap:6px}
+.win .tb span{width:10px;height:10px;border-radius:50%;background:#ff5f57}.win .tb span:nth-child(2){background:#febc2e}.win .tb span:nth-child(3){background:#28c840}
+pre{margin:0;background:var(--code-bg);color:var(--code-ink);padding:16px 18px;overflow-x:auto;font:400 15px/1.6 var(--mono);tab-size:4}
+pre code{font:inherit}
+.k{color:var(--c-kw)}.s{color:var(--c-str)}.c{color:var(--c-com)}.n{color:var(--c-num)}
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:22px 18px 18px;margin:22px 0}
+.tag{display:inline-block;font:700 13px var(--mono);color:var(--accent);background:var(--soft);border-radius:99px;padding:3px 12px;margin:0 0 10px}
+.lesson h2{font-size:26px;line-height:1.2;font-weight:800;margin:0 0 10px}
+.lesson p{margin:0 0 12px}
+.code{position:relative;margin:14px 0;border-radius:10px;overflow:hidden}
+.copy{position:absolute;top:8px;right:8px;font:600 13px var(--sans);background:#ffffff22;color:var(--code-ink);border:0;border-radius:6px;padding:5px 10px;cursor:pointer}
+.code pre{padding-top:40px}
+.try{background:var(--soft);border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:18px 0 10px}
+.try strong{display:block}
+.ed{display:block;width:100%;min-height:150px;resize:vertical;background:var(--code-bg);color:var(--code-ink);border:2px solid var(--line);border-radius:10px;padding:14px 16px;font:400 15px/1.6 var(--mono);white-space:pre;overflow:auto;tab-size:4}
+.ed.ok{border-color:#22c55e;box-shadow:0 0 0 4px #22c55e40}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 6px}
+.res{min-height:1.6em;font-weight:600;margin:6px 0 0}
+.res.ok{color:var(--okc)}.res.err{color:var(--errc)}
+.res a{color:var(--accent);margin-left:8px}
+.steps{padding-left:20px;margin:0 0 12px}
+.steps li{margin:4px 0}
+code.i{font:400 .9em var(--mono);background:var(--soft);padding:2px 6px;border-radius:4px}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;background:var(--ink);color:var(--bg);font:700 15px var(--sans);border:0;border-radius:99px;padding:12px 18px;box-shadow:0 6px 20px #00000055;cursor:pointer}
+dialog{width:calc(100% - 28px);max-width:440px;border:1px solid var(--line);border-radius:16px;padding:18px;background:var(--card);color:var(--ink);box-shadow:var(--shadow)}
+dialog::backdrop{background:#000000a8}
+.dh{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.dh h3{margin:0;font-size:20px}
+.x{background:var(--soft);color:var(--ink);border:0;border-radius:8px;font:700 15px var(--sans);padding:8px 14px;cursor:pointer}
+.dl{list-style:none;margin:0;padding:0;max-height:64vh;overflow:auto}
+.dl li{border-top:1px solid var(--line)}
+.dl li.g{border:0;font:700 12px var(--mono);color:var(--accent2);text-transform:uppercase;letter-spacing:.06em;padding:14px 4px 4px}
+.dl a{display:flex;align-items:center;gap:12px;padding:11px 4px;color:var(--ink);text-decoration:none;font-weight:600}
+.dl a b{font:700 14px var(--mono);color:var(--accent);width:26px}
+.dl a i{margin-left:auto;font-style:normal;color:var(--okc)}
+footer{margin:40px 0 80px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="brand"><svg viewBox="0 0 64 64" role="img" aria-label="Luau сурья лого"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a66d6"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="url(#lg)"/><g fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 16C18 16 18 20 18 24V28C18 31 16 32 14 32C16 32 18 33 18 36V40C18 44 18 48 24 48"/><path d="M40 16C46 16 46 20 46 24V28C46 31 48 32 50 32C48 32 46 33 46 36V40C46 44 46 48 40 48"/></g><rect x="27" y="27" width="10" height="10" rx="2.5" fill="#fff"/></svg><div><b>Luau сурья</b><small>game.luau</small></div></div>
+    <h1>Roblox скрипт <em>бичиж сурья</em></h1>
+    <p class="lead">Luau хэлийг монголоор тайлбарлана. 20 хичээл бүр дээр өөрөө код бичээд шалгана, зөв бол үр дүн харагдана.</p>
+    <button class="btn" type="button" id="openDl">Хичээл харах</button>
+    <div class="bar"><i id="barI"></i></div>
+    <p class="prog" id="prog"></p>
+    <div class="win"><div class="tb"><span></span><span></span><span></span></div>
+<pre><code>print("Сайн уу, Roblox!")
+for i = 1, 3 do
+	print("Тоо:", i)
+end</code></pre></div>
+  </div>
+</header>
+
+<main class="wrap" id="main"></main>
+<button class="fab" type="button" id="fab">Хичээлүүд</button>
+
+<dialog id="dlg" aria-labelledby="dlgT">
+  <div class="dh"><h3 id="dlgT">Бүх хичээл (1–20)</h3><button class="x" type="button" id="closeDl">Хаах</button></div>
+  <ol class="dl" id="dl"></ol>
+</dialog>
+<footer><div class="wrap">© 2026 Roblox Luau сурья</div></footer>
+
+<script>
+(function(){
+var C=function(s){return '<code class="i">'+s+'</code>';};
+var TS=/\.Touched\s*:\s*Connect\s*\(\s*function/, HUM=/FindFirstChildOfClass\s*\(\s*["']Humanoid["']\s*\)/, END=/\bend\b/, PR=/print\s*\(/;
+var L=[
+/*1*/{g:0,t:"Анхны скрипт",
+i:'<p>Скриптийг Roblox Studio дотор бичнэ.</p><ol class="steps"><li>Studio нээж Baseplate үүсгэ.</li><li>Explorer дотор '+C("ServerScriptService")+' дээр баруун товшоод '+C("Insert Object")+' → '+C("Script")+' сонго.</li><li>Код бичээд '+C("Run")+' дар. '+C("View")+' → '+C("Output")+' цонхонд үр дүн гарна.</li></ol><p>'+C("print")+' нь Output цонхонд текст харуулна.</p>',
+ex:'print("Сайн уу, Roblox!")',
+task:'Өөрийн нэрийг '+C("print")+'-ээр хэвлэ.',start:'-- Доор бичээрэй\n',
+ck:[[/print\s*\(\s*(["']).+\1\s*\)/,'print("нэр") гэж бичиж, нэрээ хашилтанд хий.']]},
+/*2*/{g:0,t:"Хувьсагч",
+i:'<p>Хувьсагч бол утга хадгалдаг нэртэй хайрцаг. '+C("local")+' гэж үүсгэнэ. Төрлүүд: '+C("string")+' текст, '+C("number")+' тоо, '+C("boolean")+' (true/false), '+C("nil")+' хоосон.</p>',
+ex:'local playerName = "Bat"\nlocal coins = 10\nlocal isAlive = true\n\ncoins = coins + 5\nprint(playerName, coins, isAlive)',
+task:C("coins")+' хувьсагч үүсгэж 20 утга өг. 5 нэмээд хэвлэ.',start:'',
+ck:[[/local\s+coins\s*=\s*20\b/,'local coins = 20 гэж эхэл.'],[/coins\s*=\s*coins\s*\+\s*5\b/,'coins = coins + 5 гэж нэм.'],[/print\s*\(\s*coins\s*\)/,'print(coins) гэж хэвлэ.']]},
+/*3*/{g:0,t:"Нөхцөл (if)",
+i:'<p>Нөхцөл үнэн бол л кодын тухайн хэсэг ажиллана. Харьцуулалт: '+C("==")+', '+C("~=")+', '+C(">")+', '+C("<")+'. Холбох: '+C("and")+', '+C("or")+', '+C("not")+'.</p>',
+ex:'local health = 40\n\nif health > 70 then\n\tprint("Сайн байна")\nelseif health > 30 then\n\tprint("Болгоомжтой")\nelse\n\tprint("Аюултай!")\nend',
+task:C("health")+'-д 40 өг. 50-аас бага бол “Аюултай!” гэж хэвлэ.',start:'',
+ck:[[/local\s+health\s*=\s*40\b/,'local health = 40 гэж эхэл.'],[/if\s+health\s*<=?\s*\d+\s+then/,'if health < 50 then гэж бич.'],[PR,'print(...) нэм.'],[END,'if-ээ end гэж хаа.']]},
+/*4*/{g:0,t:"Давталт",
+i:'<p>Нэг үйлдлийг олон дахин хийлгэхэд давталт хэрэглэнэ. Эхний давталт тоолно, хоёр дахь нь жагсаалтаар дамжина.</p>',
+ex:'for i = 1, 5 do\n\tprint("Тоо:", i)\nend\n\nlocal fruits = {"алим", "банан"}\nfor index, fruit in ipairs(fruits) do\n\tprint(index, fruit)\nend',
+task:'1-ээс 10 хүртэлх тоог хэвлэ.',start:'',
+ck:[[/for\s+\w+\s*=\s*1\s*,\s*10\s+do/,'for i = 1, 10 do гэж эхэл.'],[PR,'дотор нь print(i) бич.'],[END,'давталтаа end гэж хаа.']]},
+/*5*/{g:0,t:"Функц",
+i:'<p>Функц бол нэр өгсөн кодын хэсэг. Нэг бичээд хэд ч дуудна. '+C("return")+' нь утга буцаана.</p>',
+ex:'local function add(a, b)\n\treturn a + b\nend\n\nprint(add(2, 3))\nprint(add(10, 7))',
+task:'Хоёр тоог үржүүлдэг '+C("multiply")+' функц бич. '+C("multiply(3, 4)")+'-ийг хэвлэ.',start:'',
+ck:[[/(local\s+)?function\s+multiply\s*\(\s*\w+\s*,\s*\w+\s*\)/,'local function multiply(a, b) гэж эхэл.'],[/return\s+\w+\s*\*\s*\w+/,'return a * b гэж буцаа.'],[END,'функцээ end гэж хаа.'],[/print\s*\(\s*multiply\s*\(\s*3\s*,\s*4\s*\)\s*\)/,'print(multiply(3, 4)) гэж хэвлэ.']]},
+/*6*/{g:0,t:"Жагсаалт (table)",
+i:'<p>Жагсаалтад олон утга хадгална. Luau-д дугаарлалт '+C("1")+'-ээс эхэлнэ. '+C("#")+' нь уртыг өгнө.</p>',
+ex:'local fruits = {"алим", "банан", "усан үзэм"}\nprint(fruits[1])\nprint(#fruits)\n\ntable.insert(fruits, "жүрж")\nprint(#fruits)',
+task:'3 зүйлтэй жагсаалт үүсгээд уртыг нь хэвлэ.',start:'',
+ck:[[/local\s+\w+\s*=\s*\{[^{}]+,[^{}]+,[^{}]+\}/,'local нэр = {"а", "б", "в"} гэж 3 зүйлтэй жагсаалт үүсгэ.'],[/print\s*\(\s*#\s*\w+\s*\)/,'print(#нэр) гэж уртыг нь хэвлэ.']]},
+/*7*/{g:0,t:"Хүлээх ба while",
+i:'<p>'+C("while true do")+' төгсгөлгүй давтана. '+C("task.wait(1)")+' 1 секунд хүлээнэ. Хүлээлтгүй төгсгөлгүй давталт тоглоомыг гацаана.</p>',
+ex:'local seconds = 0\n\nwhile true do\n\tseconds = seconds + 1\n\tprint("Өнгөрсөн секунд:", seconds)\n\ttask.wait(1)\nend',
+task:'Секунд тутам “Тик” гэж хэвлэдэг төгсгөлгүй давталт бич.',start:'',
+ck:[[/while\s+true\s+do/,'while true do гэж эхэл.'],[PR,'дотор нь print(...) бич.'],[/task\s*\.\s*wait\s*\(\s*[\d.]+\s*\)/,'task.wait(1) нэм.'],[END,'давталтаа end гэж хаа.']]},
+/*8*/{g:1,t:"Part-д хүрэх (Touched)",
+i:'<p>Workspace-д '+C("Part")+' нэм. '+C("Touched")+' бол үйл явдал (event): Part-д ямар нэг зүйл хүрэх бүрт функц ажиллана. Доорх нь хүрсэн хүнийг үхүүлнэ.</p>',
+ex:'local part = workspace:WaitForChild("Part")\n\npart.Touched:Connect(function(hit)\n\tlocal humanoid = hit.Parent:FindFirstChildOfClass("Humanoid")\n\tif humanoid then\n\t\thumanoid.Health = 0\n\tend\nend)',
+task:'Part-д хүрэхэд “Хүрлээ!” гэж хэвлэ.',start:'-- Part-аа workspace-ээс ол, Touched-д холбо\n',
+ck:[[/WaitForChild\s*\(\s*["']Part["']\s*\)|workspace\s*\.\s*Part/,'workspace:WaitForChild("Part") гэж Part-аа ол.'],[TS,'part.Touched:Connect(function() гэж бич.'],[PR,'дотор нь print(...) нэм.'],[/\bend\s*\)/,'төгсгөлд нь end) гэж хаа.']]},
+/*9*/{g:1,t:"Part-ын өнгө ба байрлал",
+i:'<p>'+C("Color3.fromRGB")+' өнгө, '+C("Vector3.new")+' байрлал өгнө. '+C("Anchored = true")+' бол Part унахгүй. Доорх жишээ Part-ыг 0.5 секунд тутам санамсаргүй өнгөөр солино.</p>',
+ex:'local part = workspace:WaitForChild("Part")\npart.Anchored = true\npart.Position = Vector3.new(0, 10, 0)\npart.Color = Color3.fromRGB(255, 0, 0)\n\nwhile true do\n\tpart.Color = Color3.fromHSV(math.random(), 1, 1)\n\ttask.wait(0.5)\nend',
+task:'Part-ыг '+C("Anchored")+' болгож, улаан өнгөтэй болго.',start:'local part = workspace:WaitForChild("Part")\n',
+ck:[[/\.Anchored\s*=\s*true/,'part.Anchored = true гэж бич.'],[/\.Color\s*=\s*Color3\s*\.\s*fromRGB\s*\(\s*255\s*,\s*0\s*,\s*0\s*\)/,'part.Color = Color3.fromRGB(255, 0, 0) гэж бич.']]},
+/*10*/{g:1,t:"Тоглогч ба оноо",
+i:'<p>Тоглогч орох бүрт '+C("Coins")+' оноо үүсгэе. Folder-ийн нэр заавал '+C("leaderstats")+' байх ёстой, тэгвэл Roblox оноог автоматаар харуулна.</p>',
+ex:'local Players = game:GetService("Players")\n\nPlayers.PlayerAdded:Connect(function(player)\n\tlocal leaderstats = Instance.new("Folder")\n\tleaderstats.Name = "leaderstats"\n\tleaderstats.Parent = player\n\n\tlocal coins = Instance.new("IntValue")\n\tcoins.Name = "Coins"\n\tcoins.Value = 0\n\tcoins.Parent = leaderstats\nend)',
+task:C("Coins")+'-ийг 100-аас эхлүүлдэг болго.',start:'local Players = game:GetService("Players")\n\n',
+ck:[[/Players\s*\.\s*PlayerAdded\s*:\s*Connect\s*\(\s*function\s*\(\s*\w+\s*\)/,'Players.PlayerAdded:Connect(function(player) гэж бич.'],[/Instance\s*\.\s*new\s*\(\s*["']Folder["']\s*\)/,'Instance.new("Folder") үүсгэ.'],[/["']leaderstats["']/,'Folder-т "leaderstats" нэр өг.'],[/Instance\s*\.\s*new\s*\(\s*["']IntValue["']\s*\)/,'Instance.new("IntValue") үүсгэ.'],[/["']Coins["']/,'IntValue-д "Coins" нэр өг.'],[/\.Value\s*=\s*100\b/,'coins.Value = 100 гэж бич.'],[/\.Parent\s*=/,'.Parent = гэж байрлуул.']]},
+/*11*/{g:1,t:"Эдгээгч Part",
+i:'<p>Part-д хүрэхэд амь дүүрдэг болгоё. Нэг хүрэлтэд функц олон удаа ажиллах тул '+C("canHeal")+' гэсэн түгжээ (debounce) хэрэглэнэ.</p>',
+ex:'local part = workspace:WaitForChild("HealPart")\nlocal canHeal = true\n\npart.Touched:Connect(function(hit)\n\tlocal humanoid = hit.Parent:FindFirstChildOfClass("Humanoid")\n\tif humanoid and canHeal then\n\t\tcanHeal = false\n\t\thumanoid.Health = humanoid.MaxHealth\n\t\ttask.wait(2)\n\t\tcanHeal = true\n\tend\nend)',
+task:'Хүрсэн хүний '+C("Health")+'-ийг '+C("MaxHealth")+'-тай тэнцүү болго.',start:'local part = workspace:WaitForChild("HealPart")\n\n',
+ck:[[TS,'part.Touched:Connect(function(hit) гэж бич.'],[HUM,'hit.Parent:FindFirstChildOfClass("Humanoid") гэж Humanoid ол.'],[/\.Health\s*=\s*\w+\.MaxHealth/,'humanoid.Health = humanoid.MaxHealth гэж бич.'],[/\bend\s*\)/,'төгсгөлд нь end) гэж хаа.']]},
+/*12*/{g:1,t:"Хурдан болгох Part",
+i:'<p>Humanoid-ийн '+C("WalkSpeed")+' нь явах хурд (анхны утга 16). '+C("JumpPower")+' нь үсрэлт.</p>',
+ex:'local part = workspace:WaitForChild("SpeedPad")\n\npart.Touched:Connect(function(hit)\n\tlocal humanoid = hit.Parent:FindFirstChildOfClass("Humanoid")\n\tif humanoid then\n\t\thumanoid.WalkSpeed = 40\n\t\ttask.wait(3)\n\t\thumanoid.WalkSpeed = 16\n\tend\nend)',
+task:'Хүрсэн хүний '+C("WalkSpeed")+'-ийг 50 болго.',start:'local part = workspace:WaitForChild("SpeedPad")\n\n',
+ck:[[TS,'part.Touched:Connect(function(hit) гэж бич.'],[HUM,'Humanoid ол.'],[/\.WalkSpeed\s*=\s*50\b/,'humanoid.WalkSpeed = 50 гэж бич.']]},
+/*13*/{g:1,t:"Тоглогчийн араас хөөх дайсан",
+i:'<p>Studio-д Rig Builder-ээр дүр (Dummy) нэмж нэрийг нь '+C("Enemy")+' болго. Скрипт хамгийн ойрхон тоглогчийг олж '+C("MoveTo")+'-оор түүн рүү явуулна. '+C("Magnitude")+' нь хоорондын зай.</p>',
+ex:'local Players = game:GetService("Players")\nlocal npc = workspace:WaitForChild("Enemy")\nlocal humanoid = npc:WaitForChild("Humanoid")\nlocal root = npc:WaitForChild("HumanoidRootPart")\n\nwhile true do\n\tlocal nearest, dist = nil, math.huge\n\tfor _, player in ipairs(Players:GetPlayers()) do\n\t\tlocal char = player.Character\n\t\tlocal hrp = char and char:FindFirstChild("HumanoidRootPart")\n\t\tif hrp then\n\t\t\tlocal d = (hrp.Position - root.Position).Magnitude\n\t\t\tif d < dist then\n\t\t\t\tnearest, dist = hrp, d\n\t\t\tend\n\t\tend\n\tend\n\tif nearest then\n\t\thumanoid:MoveTo(nearest.Position)\n\tend\n\ttask.wait(0.2)\nend',
+task:'Бүх тоглогчоор давтаж, '+C("humanoid:MoveTo(...)")+'-ээр тоглогч руу явуул.',
+start:'local Players = game:GetService("Players")\nlocal npc = workspace:WaitForChild("Enemy")\nlocal humanoid = npc:WaitForChild("Humanoid")\n\nwhile true do\n\t\n\ttask.wait(0.2)\nend',
+ck:[[/GetPlayers\s*\(\s*\)/,'Players:GetPlayers() гэж тоглогчдыг ав.'],[/ipairs\s*\(/,'for _, player in ipairs(...) do гэж давт.'],[/HumanoidRootPart/,'player.Character-ийн HumanoidRootPart-ыг ол.'],[/:MoveTo\s*\(/,'humanoid:MoveTo(hrp.Position) гэж явуул.']]},
+/*14*/{g:1,t:"Тоглогчийг дагах Part",
+i:'<p>Part нэр нь '+C("Follower")+'. '+C("Lerp")+' нь хоёр байрлалын дундуур жигд шилжүүлнэ: 0.1 нь “зайны 10%-ийг нэг алхамд хий” гэсэн үг. Part нь '+C("Anchored")+' байх ёстой.</p>',
+ex:'local Players = game:GetService("Players")\nlocal part = workspace:WaitForChild("Follower")\npart.Anchored = true\n\nwhile true do\n\tfor _, player in ipairs(Players:GetPlayers()) do\n\t\tlocal hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")\n\t\tif hrp then\n\t\t\tlocal goal = hrp.Position + Vector3.new(0, 3, 0)\n\t\t\tpart.Position = part.Position:Lerp(goal, 0.1)\n\t\tend\n\tend\n\ttask.wait()\nend',
+task:'Part-ын Position-ийг тоглогчийн HumanoidRootPart руу '+C("Lerp")+' хий.',
+start:'local Players = game:GetService("Players")\nlocal part = workspace:WaitForChild("Follower")\npart.Anchored = true\n\n',
+ck:[[/HumanoidRootPart/,'player.Character:FindFirstChild("HumanoidRootPart") ол.'],[/:Lerp\s*\(/,'part.Position:Lerp(goal, 0.1) гэж бич.'],[/task\s*\.\s*wait/,'давталтдаа task.wait() нэм.']]},
+/*15*/{g:2,t:"Tween (жигд хөдөлгөөн)",
+i:'<p>'+C("TweenService")+' нь Part-ыг жигд, гоё хөдөлгөнө. '+C("TweenInfo.new")+'-ийн 4-р утга '+C("-1")+' бол төгсгөлгүй, 5-р '+C("true")+' бол буцаж хөдөлнө.</p>',
+ex:'local TweenService = game:GetService("TweenService")\nlocal part = workspace:WaitForChild("Part")\npart.Anchored = true\n\nlocal info = TweenInfo.new(2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut, -1, true)\nlocal goal = {Position = part.Position + Vector3.new(0, 10, 0)}\n\nlocal tween = TweenService:Create(part, info, goal)\ntween:Play()',
+task:'TweenService-ээр Part-ыг дээш хөдөлгөж '+C("Play")+' хий.',start:'local part = workspace:WaitForChild("Part")\npart.Anchored = true\n\n',
+ck:[[/GetService\s*\(\s*["']TweenService["']\s*\)/,'game:GetService("TweenService") ав.'],[/TweenInfo\s*\.\s*new\s*\(/,'TweenInfo.new(2) үүсгэ.'],[/:Create\s*\(/,'TweenService:Create(part, info, goal) гэж бич.'],[/:Play\s*\(\s*\)/,'tween:Play() гэж эхлүүл.']]},
+/*16*/{g:2,t:"Part кодоор үүсгэх",
+i:'<p>'+C("Instance.new")+' нь шинэ объект үүсгэнэ. '+C("Parent = workspace")+' гэж тавьсны дараа л тоглоомд харагдана. '+C("Debris")+' нь объектыг хугацааны дараа устгана.</p>',
+ex:'local Debris = game:GetService("Debris")\n\nwhile true do\n\tlocal part = Instance.new("Part")\n\tpart.Size = Vector3.new(2, 2, 2)\n\tpart.Position = Vector3.new(math.random(-20, 20), 30, math.random(-20, 20))\n\tpart.Color = Color3.fromHSV(math.random(), 1, 1)\n\tpart.Parent = workspace\n\tDebris:AddItem(part, 5)\n\ttask.wait(0.5)\nend',
+task:'Шинэ Part үүсгэ, '+C("Size")+' өг, '+C("workspace")+'-д байрлуул.',start:'',
+ck:[[/Instance\s*\.\s*new\s*\(\s*["']Part["']\s*\)/,'Instance.new("Part") гэж үүсгэ.'],[/\.Size\s*=\s*Vector3\s*\.\s*new/,'part.Size = Vector3.new(4, 1, 4) гэж хэмжээ өг.'],[/\.Parent\s*=\s*workspace/,'part.Parent = workspace гэж байрлуул.']]},
+/*17*/{g:2,t:"Coin цуглуулах",
+i:'<p>Тоглогчийн Character нь '+C("Players:GetPlayerFromCharacter")+'-ээр Player болно. Тэгээд '+C("leaderstats")+'-ийн Coins-д нэмээд Coin-ыг '+C("Destroy")+' хийнэ. '+C("+=")+' нь “нэм” гэсэн товчлол.</p>',
+ex:'local Players = game:GetService("Players")\nlocal coin = workspace:WaitForChild("Coin")\n\ncoin.Touched:Connect(function(hit)\n\tlocal player = Players:GetPlayerFromCharacter(hit.Parent)\n\tif player then\n\t\tplayer.leaderstats.Coins.Value += 1\n\t\tcoin:Destroy()\n\tend\nend)',
+task:'Хүрсэн тоглогчийн Coins-д 1 нэмж, Coin-ыг устга.',
+start:'local Players = game:GetService("Players")\nlocal coin = workspace:WaitForChild("Coin")\n\n',
+ck:[[TS,'coin.Touched:Connect(function(hit) гэж бич.'],[/GetPlayerFromCharacter\s*\(/,'Players:GetPlayerFromCharacter(hit.Parent) гэж Player ол.'],[/leaderstats[\s\S]*Coins/,'player.leaderstats.Coins гэж хандаж бич.'],[/\.Value\s*\+=\s*1|\.Value\s*=\s*[\w.]*\.Value\s*\+\s*1/,'.Value += 1 гэж нэм.'],[/:Destroy\s*\(\s*\)/,'coin:Destroy() гэж устга.']]},
+/*18*/{g:2,t:"RemoteEvent (клиент ба сервер)",
+i:'<p>Тоглогчийн төхөөрөмж (LocalScript) болон сервер (Script) хоорондоо '+C("RemoteEvent")+'-ээр мэдээлэл дамжуулна. Эхлээд '+C("ReplicatedStorage")+'-д '+C("Hello")+' нэртэй RemoteEvent нэм.</p>',
+ex:'-- Script (ServerScriptService)\nlocal ReplicatedStorage = game:GetService("ReplicatedStorage")\nlocal event = ReplicatedStorage:WaitForChild("Hello")\n\nevent.OnServerEvent:Connect(function(player, message)\n\tprint(player.Name, "бичлээ:", message)\nend)\n\n-- LocalScript (StarterPlayerScripts)\n-- event:FireServer("Сайн уу!")',
+task:'Server талд '+C("OnServerEvent")+' холбож ирсэн мессежийг хэвл.',
+start:'local ReplicatedStorage = game:GetService("ReplicatedStorage")\nlocal event = ReplicatedStorage:WaitForChild("Hello")\n\n',
+ck:[[/\.OnServerEvent\s*:\s*Connect\s*\(\s*function\s*\(\s*\w+\s*,\s*\w+\s*\)/,'event.OnServerEvent:Connect(function(player, message) гэж бич.'],[PR,'дотор нь print(...) нэм.'],[/\bend\s*\)/,'төгсгөлд нь end) гэж хаа.']]},
+/*19*/{g:2,t:"Дэлгэцийн UI",
+i:'<p>UI-г '+C("LocalScript")+'-ээр хийнэ (StarterPlayerScripts дотор). '+C("ScreenGui")+' дотор '+C("TextLabel")+' байрлуулна. '+C("UDim2.new")+' нь хэмжээ, байрлал өгнө.</p>',
+ex:'local Players = game:GetService("Players")\nlocal player = Players.LocalPlayer\n\nlocal gui = Instance.new("ScreenGui")\ngui.Parent = player:WaitForChild("PlayerGui")\n\nlocal label = Instance.new("TextLabel")\nlabel.Size = UDim2.new(0, 300, 0, 50)\nlabel.Position = UDim2.new(0.5, -150, 0, 20)\nlabel.Text = "Сайн байна уу!"\nlabel.TextScaled = true\nlabel.Parent = gui',
+task:'ScreenGui болон TextLabel үүсгэж, текстийг нь тохируул.',
+start:'local Players = game:GetService("Players")\nlocal player = Players.LocalPlayer\n\n',
+ck:[[/Instance\s*\.\s*new\s*\(\s*["']ScreenGui["']\s*\)/,'Instance.new("ScreenGui") үүсгэ.'],[/PlayerGui/,'player:WaitForChild("PlayerGui") гэж ол.'],[/Instance\s*\.\s*new\s*\(\s*["']TextLabel["']\s*\)/,'Instance.new("TextLabel") үүсгэ.'],[/\.Text\s*=\s*["']/,'label.Text = "..." гэж текст өг.']]},
+/*20*/{g:2,t:"Жижиг тоглоом: олон Coin",
+i:'<p>Өмнөх хичээлүүдээ нэгтгэе. Давталтаар 10 Coin үүсгэж, санамсаргүй газар тавина. Хүрсэн тоглогч бүр 1 оноо авна. Эхлээд 10-р хичээлийн leaderstats скриптээ нэм.</p>',
+ex:'local Players = game:GetService("Players")\n\nfor i = 1, 10 do\n\tlocal coin = Instance.new("Part")\n\tcoin.Shape = Enum.PartType.Ball\n\tcoin.Size = Vector3.new(2, 2, 2)\n\tcoin.Color = Color3.fromRGB(255, 200, 0)\n\tcoin.Anchored = true\n\tcoin.Position = Vector3.new(math.random(-30, 30), 3, math.random(-30, 30))\n\tcoin.Parent = workspace\n\n\tcoin.Touched:Connect(function(hit)\n\t\tlocal player = Players:GetPlayerFromCharacter(hit.Parent)\n\t\tif player then\n\t\t\tplayer.leaderstats.Coins.Value += 1\n\t\t\tcoin:Destroy()\n\t\tend\n\tend)\nend',
+task:'10 Coin Part-ыг '+C("for")+' давталтаар үүсгэж, '+C("math.random")+'-оор байрлал өг.',
+start:'local Players = game:GetService("Players")\n\n',
+ck:[[/for\s+\w+\s*=\s*1\s*,\s*10\s+do/,'for i = 1, 10 do гэж эхэл.'],[/Instance\s*\.\s*new\s*\(\s*["']Part["']\s*\)/,'Instance.new("Part") үүсгэ.'],[/math\s*\.\s*random\s*\(/,'math.random(-30, 30) гэж байрлал өг.'],[/\.Parent\s*=\s*workspace/,'coin.Parent = workspace гэж байрлуул.'],[END,'давталтаа end гэж хаа.']]}
+];
+var G=["Үндэс","Roblox объект","Ахисан"];
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+var re=/(--[^\n]*)|("(?:[^"\\\n]|\\.)*")|\b(local|function|end|if|then|elseif|else|for|do|while|in|return|and|or|not|true|false|nil)\b|\b(\d+(?:\.\d+)?)\b/g;
+function hl(src){return esc(src).replace(re,function(m,c,s,k,n){
+  if(c)return '<span class="c">'+c+'</span>';if(s)return '<span class="s">'+s+'</span>';
+  if(k)return '<span class="k">'+k+'</span>';return '<span class="n">'+n+'</span>';});}
+var hc=document.querySelector(".hero pre code");hc.innerHTML=hl(hc.textContent);
+
+var done=[];
+try{done=JSON.parse(localStorage.getItem("luau-done")||"[]");}catch(e){done=[];}
+function save(){try{localStorage.setItem("luau-done",JSON.stringify(done));}catch(e){}}
+var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function confetti(from){
+  if(reduce)return;
+  var r=from.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,cols=["#22c55e","#0a66d6","#fbbf24","#ef4444","#a855f7"];
+  for(var i=0;i<44;i++){
+    var d=document.createElement("span");
+    d.style.cssText="position:fixed;left:"+cx+"px;top:"+cy+"px;width:9px;height:9px;border-radius:2px;pointer-events:none;z-index:99;background:"+cols[i%5];
+    document.body.appendChild(d);
+    var a=Math.random()*Math.PI*2,v=90+Math.random()*190;
+    d.animate([{transform:"translate(0,0) rotate(0)",opacity:1},{transform:"translate("+Math.cos(a)*v+"px,"+(Math.sin(a)*v+120)+"px) rotate("+(Math.random()*720)+"deg)",opacity:0}],{duration:1100+Math.random()*500,easing:"cubic-bezier(.2,.7,.3,1)"}).onfinish=(function(x){return function(){x.remove();};})(d);
+  }
+}
+
+var main=document.getElementById("main"),dl=document.getElementById("dl"),lastG=-1;
+L.forEach(function(l,idx){
+  var n=idx+1,sec=document.createElement("section");
+  sec.className="lesson";sec.id="l"+n;
+  var rows=Math.max(6,l.start.split("\n").length+3);
+  sec.innerHTML='<p class="tag">Хичээл '+n+' · '+G[l.g]+'</p><h2>'+l.t+'</h2>'+l.i+
+   '<div class="code"><button class="copy" type="button">Хуулах</button><pre><code class="ex"></code></pre></div>'+
+   '<div class="try"><strong>Дасгал</strong>'+l.task+'</div>'+
+   '<textarea class="ed" rows="'+rows+'" wrap="off" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="Код бичих хэсэг"></textarea>'+
+   '<div class="row"><button class="btn chk" type="button">Шалгах</button><button class="btn ghost rst" type="button">Дахин эхлэх</button></div><p class="res" aria-live="polite"></p>';
+  main.appendChild(sec);
+  sec.querySelector("code.ex").innerHTML=hl(l.ex);
+  var ed=sec.querySelector(".ed"),res=sec.querySelector(".res"),chk=sec.querySelector(".chk");
+  ed.value=l.start;
+  ed.addEventListener("keydown",function(e){
+    if(e.key==="Tab"){e.preventDefault();var s=ed.selectionStart;ed.value=ed.value.slice(0,s)+"\t"+ed.value.slice(ed.selectionEnd);ed.selectionStart=ed.selectionEnd=s+1;}
+  });
+  ed.addEventListener("input",function(){ed.classList.remove("ok");});
+  sec.querySelector(".rst").addEventListener("click",function(){ed.value=l.start;ed.classList.remove("ok");res.className="res";res.textContent="";});
+  sec.querySelector(".copy").addEventListener("click",function(){
+    var b=this,t=function(x){b.textContent=x;setTimeout(function(){b.textContent="Хуулах";},1500);};
+    try{navigator.clipboard.writeText(l.ex).then(function(){t("Хуулсан");},function(){t("Алдаа");});}catch(e){t("Алдаа");}
+  });
+  chk.addEventListener("click",function(){
+    var src=ed.value.replace(/--[^\n]*/g,""),ok=0,miss=null;
+    l.ck.forEach(function(c){if(c[0].test(src))ok++;else if(!miss)miss=c[1];});
+    if(!miss){
+      ed.classList.add("ok");res.className="res ok";
+      res.innerHTML='✓ Зөв бичлээ! Маш сайн.'+(n<L.length?'<a href="#l'+(n+1)+'">Дараагийн хичээл</a>':' Бүх 20 хичээлийг дуусгалаа!');
+      confetti(chk);
+      if(done.indexOf(n)<0){done.push(n);save();refresh();}
+    }else{
+      ed.classList.remove("ok");res.className="res err";
+      res.textContent=ok+"/"+l.ck.length+" зөв. Зөвлөгөө: "+miss;
+    }
+  });
+  if(l.g!==lastG){lastG=l.g;var h=document.createElement("li");h.className="g";h.textContent=G[l.g];dl.appendChild(h);}
+  var li=document.createElement("li");
+  li.innerHTML='<a href="#l'+n+'"><b>'+n+'</b>'+l.t+'<i></i></a>';
+  dl.appendChild(li);
+});
+
+function refresh(){
+  document.getElementById("prog").textContent="Явц: "+done.length+" / "+L.length+" хичээл дууссан";
+  document.getElementById("barI").style.width=(done.length/L.length*100)+"%";
+  dl.querySelectorAll("li:not(.g)").forEach(function(li,i){li.querySelector("i").textContent=done.indexOf(i+1)>=0?"✓":"";});
+}
+refresh();
+
+var dlg=document.getElementById("dlg");
+function openD(){if(dlg.showModal)dlg.showModal();else dlg.setAttribute("open","");}
+function closeD(){if(dlg.close)dlg.close();else dlg.removeAttribute("open");}
+document.getElementById("openDl").addEventListener("click",openD);
+document.getElementById("fab").addEventListener("click",openD);
+document.getElementById("closeDl").addEventListener("click",closeD);
+dl.addEventListener("click",function(e){if(e.target.closest("a"))closeD();});
+dlg.addEventListener("click",function(e){if(e.target===dlg)closeD();});
+})();
+</script>
+</body>
+</html>
